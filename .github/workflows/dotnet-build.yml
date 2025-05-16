@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 * * * *'  # a cada hora
+    - cron: '0 * * * *'  # executa a cada hora
 
 jobs:
   build:
@@ -18,13 +18,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'  # ou ajuste conforme sua versão
+          dotnet-version: '8.0.x'
 
       - name: Restaurar dependências
         run: dotnet restore
+        working-directory: ./github4women
 
       - name: Build do projeto
         run: dotnet build --configuration Release
+        working-directory: ./github4women
 
       - name: Teste personalizado - Listar arquivos do projeto
         run: ls -R
+        working-directory: ./github4women
